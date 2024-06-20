@@ -47,7 +47,7 @@ const ReadEntities = () => {
               <button onClick={() => setEditingId()} className="btn btn-info">Update entity</button>
               {
                 editingId == id && (
-                  <UpdateComponent
+                  <UpdateEntity
                   initialID={id}
                   initialClass={entityClass}
                   initialContainment={containment}
