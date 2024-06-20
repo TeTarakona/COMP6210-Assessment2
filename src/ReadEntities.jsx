@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import UpdateEntity from "./UpdateEntity.jsx";
 
 import { db } from "./firebase.js";
@@ -33,6 +33,16 @@ const ReadEntities = () => {
     fetchEntities();
   }
 
+  const redact = async (id) => {
+    const entityRef = doc(db, "entities", id);
+    try {
+      await deleteDoc(entityRef);
+      handleRefresh();
+    } catch (error) {
+      console.error("Error redacting entity: ", error)
+    }
+  }
+
   return (
     <>
       <h1>Registered entities</h1>
@@ -44,7 +54,8 @@ const ReadEntities = () => {
               <p>{entity.class}</p>
               <p>{entity.containment}</p>
               <p>{entity.description}</p>
-              <button onClick={() => setEditingId()} className="btn btn-info">Update entity</button>
+              <button onClick={() => setEditingId(id)} className="btn btn-info">Update entity</button>
+              <button onClick={() => redact(id)} className="btn btn-danger">Redact entity</button>
               {
                 editingId == id && (
                   <UpdateEntity
