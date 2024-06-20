@@ -31,8 +31,9 @@ return (
         <input type="text" value={id} onchange={(e) => setId(e.target.value)} placeholder="" id="id" required />
         <label htmlFor="class">Entity Class</label>
         <input type="text" value={entityClass} onchange={(e) => setEntityClass(e.target.value)} id="class" required />
-        <label htmlFor="containment"></label>
+        <label htmlFor="containment">Containment Procedure</label>
         <textarea type="text" value={containment} onchange={(e) => setContainment(e.target.value)} id="containment" required />
+        <label htmlFor="description">Entity Description</label>
         <textarea type="text" value={description} onchange={(e) => setDescription(e.target.value)} id="description" required />
         <button type="submit" >Create entitiy</button>
     </form>
