@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 import { db } from "./firebase.js";
 
-const UpdateEntity = (id, initialId, initialClass, initialContainment, initialDescription, onUpdated) => {
+const UpdateEntity = (initialId, initialClass, initialContainment, initialDescription, onUpdated) => {
     
     const [id, setId] = useState (initialId);
     const [entityClass, setEntityClass] = useState (initialClass); //Class is a keyword, so this field has been renamed to Entity Class but will be referring to the class field in the firebase database
