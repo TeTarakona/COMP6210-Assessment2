@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
+import UpdateEntity from "./UpdateEntity.jsx";
 
 import { db } from "./firebase.js";
 
@@ -7,6 +8,8 @@ const ReadEntities = () => {
   const [entities, setEntities] = useState([]);
 
   const ourCollection = collection(db, "entities");
+
+  const [editingId, setEditingId] = useState(null)
 
   const fetchEntities = async () => {
     try {
@@ -25,6 +28,11 @@ const ReadEntities = () => {
     fetchEntities();
   }, [fetchEntities]);
 
+  const handleRefresh = () => {
+    setEditingId(null);
+    fetchEntities();
+  }
+
   return (
     <>
       <h1>Registered entities</h1>
@@ -36,6 +44,17 @@ const ReadEntities = () => {
               <p>{entity.class}</p>
               <p>{entity.containment}</p>
               <p>{entity.description}</p>
+              <button onClick={() => setEditingId()} className="btn btn-info">Update entity</button>
+              {
+                editingId == id && (
+                  <UpdateComponent
+                  initialID={id}
+                  initialClass={entityClass}
+                  initialContainment={containment}
+                  initialDescription={description}
+                  onUpdated={handleRefresh} />
+                )
+              }
             </article>
           );
         })}
