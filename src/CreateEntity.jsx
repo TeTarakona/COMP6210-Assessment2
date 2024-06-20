@@ -6,7 +6,7 @@ const CreateEntity = () => {
 const [id, setId] = useState ("");
 const [entityClass, setEntityClass] = useState (""); //Class is a keyword, so this field has been renamed to Entity Class but will be referring to the class field in the firebase database
 const [containment, setContainment] = useState ("");
-const [description, setdescription] = useState ("");
+const [description, setDescription] = useState ("");
 
 const ourCollection = collection(db, "entities");
 
@@ -18,7 +18,7 @@ const handleSubmit = async (e) => {
         setId("");
         setEntityClass("");
         setContainment("");
-        setdescription("");
+        setDescription("");
     } catch(error) {
         console.error("Error adding entity: ", error)
     }
