@@ -26,13 +26,13 @@ const UpdateEntity = (id, initialEntityId, initialClass, initialContainment, ini
     <>
         <form onSubmit={handleUpdate}>
         <label htmlFor="id">Entity ID</label>
-        <input type="text" value={entityId} onchange={(e) => setEntityId(e.target.value)} placeholder="" id="id" required />
+        <input type="text" value={entityId} onChange={(e) => setEntityId(e.target.value)} placeholder="" id="id" required />
         <label htmlFor="class">Entity Class</label>
-        <input type="text" value={entityClass} onchange={(e) => setEntityClass(e.target.value)} id="class" required />
+        <input type="text" value={entityClass} onChange={(e) => setEntityClass(e.target.value)} id="class" required />
         <label htmlFor="containment">Containment Procedure</label>
-        <textarea type="text" value={containment} onchange={(e) => setContainment(e.target.value)} id="containment" required />
+        <textarea type="text" value={containment} onChange={(e) => setContainment(e.target.value)} id="containment" required />
         <label htmlFor="description">Entity Description</label>
-        <textarea type="text" value={description} onchange={(e) => setDescription(e.target.value)} id="description" required />
+        <textarea type="text" value={description} onChange={(e) => setDescription(e.target.value)} id="description" required />
         <button type="submit" >Update entitiy</button>
     </form>
     </>
