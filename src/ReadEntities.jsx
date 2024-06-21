@@ -50,19 +50,20 @@ const ReadEntities = () => {
         {entities.map((entity) => {
           return (
             <article className="entity" key={entity.id}>
-              <h2>{entity.id}</h2>
+              <h2>{entity.entityId}</h2>
               <p>{entity.class}</p>
               <p>{entity.containment}</p>
               <p>{entity.description}</p>
-              <button onClick={() => setEditingId(id)} className="btn btn-info">Update entity</button>
-              <button onClick={() => redact(id)} className="btn btn-danger">Redact entity</button>
+              <button onClick={() => setEditingId(entity.id)} className="btn btn-info">Update entity</button>
+              <button onClick={() => redact(entity.id)} className="btn btn-danger">Redact entity</button>
               {
-                editingId == id && (
+                editingId == entity.id && (
                   <UpdateEntity
-                  initialID={id}
-                  initialClass={entityClass}
-                  initialContainment={containment}
-                  initialDescription={description}
+                  id={entity.id}
+                  initialEntityID={entity.entityId}
+                  initialClass={entity.class}
+                  initialContainment={entity.containment}
+                  initialDescription={entity.description}
                   onUpdated={handleRefresh} />
                 )
               }

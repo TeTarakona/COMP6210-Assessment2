@@ -3,9 +3,9 @@ import { doc, updateDoc } from "firebase/firestore";
 
 import { db } from "./firebase.js";
 
-const UpdateEntity = (initialId, initialClass, initialContainment, initialDescription, onUpdated) => {
+const UpdateEntity = (id, initialEntityId, initialClass, initialContainment, initialDescription, onUpdated) => {
     
-    const [id, setId] = useState (initialId);
+    const [entityId, setEntityId] = useState (initialEntityId);
     const [entityClass, setEntityClass] = useState (initialClass); //Class is a keyword, so this field has been renamed to Entity Class but will be referring to the class field in the firebase database
     const [containment, setContainment] = useState (initialContainment);
     const [description, setDescription] = useState (initialDescription);
@@ -15,7 +15,7 @@ const UpdateEntity = (initialId, initialClass, initialContainment, initialDescri
         const entityRef = doc(db, "entities", id)
 
         try {
-            await updateDoc(entityRef, {id: id, class: entityClass, containment: containment, description: description})
+            await updateDoc(entityRef, {entityId: entityId, class: entityClass, containment: containment, description: description})
             onUpdated()
         } catch (error) {
             console.error("Error updating entity: ", error)
@@ -26,7 +26,7 @@ const UpdateEntity = (initialId, initialClass, initialContainment, initialDescri
     <>
         <form onSubmit={handleUpdate}>
         <label htmlFor="id">Entity ID</label>
-        <input type="text" value={id} onchange={(e) => setId(e.target.value)} placeholder="" id="id" required />
+        <input type="text" value={entityId} onchange={(e) => setEntityId(e.target.value)} placeholder="" id="id" required />
         <label htmlFor="class">Entity Class</label>
         <input type="text" value={entityClass} onchange={(e) => setEntityClass(e.target.value)} id="class" required />
         <label htmlFor="containment">Containment Procedure</label>

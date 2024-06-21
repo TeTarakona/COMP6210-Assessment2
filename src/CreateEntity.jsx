@@ -3,7 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import {db} from "./firebase"
 
 const CreateEntity = () => {
-const [id, setId] = useState ("");
+const [entityId, setEntityId] = useState ("");
 const [entityClass, setEntityClass] = useState (""); //Class is a keyword, so this field has been renamed to Entity Class but will be referring to the class field in the firebase database
 const [containment, setContainment] = useState ("");
 const [description, setDescription] = useState ("");
@@ -14,8 +14,8 @@ const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        await addDoc(ourCollection, {id: id, class: entityClass, containment: containment, description: description})
-        setId("");
+        await addDoc(ourCollection, {entityId: entityId, class: entityClass, containment: containment, description: description})
+        setEntityId("");
         setEntityClass("");
         setContainment("");
         setDescription("");
@@ -28,7 +28,7 @@ return (
     <>
     <form onSubmit={handleSubmit}>
         <label htmlFor="id">Entity ID</label>
-        <input type="text" value={id} onchange={(e) => setId(e.target.value)} placeholder="" id="id" required />
+        <input type="text" value={entityId} onchange={(e) => setEntityId(e.target.value)} placeholder="" id="id" required />
         <label htmlFor="class">Entity Class</label>
         <input type="text" value={entityClass} onchange={(e) => setEntityClass(e.target.value)} id="class" required />
         <label htmlFor="containment">Containment Procedure</label>
